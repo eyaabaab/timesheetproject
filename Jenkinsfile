@@ -1,16 +1,24 @@
 pipeline {
     agent any
+
     stages {
-        stage('Clone Repository') {
+        stage('Git') {
             steps {
-                git url: 'https://github.com/eyaabaab/timesheetproject.git', branch: 'master'
+                git branch : 'master ',
+                url : 'https://github.com/eyaabaab/timesheetproject.git'
             }
         }
-
-         stage('SonarQube Analysis') {
+         stage('Compile') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar'
-                }
+                sh 'mvn clean compile'
+            }
+        }
+        stage('MVN Sonarqube') {
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar -Dmaven.test.skip=true'
+            }
+        }
+        
     }
 }
+                
