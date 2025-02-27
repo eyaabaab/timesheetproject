@@ -4,7 +4,7 @@ pipeline{
   stages {
       stage ('Git Checkout'){
         steps {
-            git branch: 'main', url: 'https://github.comm/eyaaabaab/timesheetproject.git'
+            git branch: 'main', url: 'https://github.com/eyaaabaab/timesheetproject.git'
           }
       }
    
