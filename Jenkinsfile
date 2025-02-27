@@ -1,12 +1,10 @@
-pipeline{
-    agent any 
-    
-  stages {
-      stage ('Git Checkout'){
-        steps {
-            git branch: 'main', url: 'https://github.com/eyaaabaab/timesheetproject.git'
-          }
-      }
-   
+pipeline {
+    agent any
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git url: 'https://github.com/eyaabaab/timesheetproject.git', branch: 'master'
+            }
+        }
     }
 }
